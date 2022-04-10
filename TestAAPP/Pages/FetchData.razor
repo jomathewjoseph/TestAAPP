@@ -1,0 +1,44 @@
+﻿@page "/fetchdata"
+@using TestAAPP.Data
+@inject FibonociService FibonociService;
+<h1>Fibonacci numbers</h1>
+@if (fibSeries == null)
+{
+    <p><em>Loading...</em></p>
+
+}
+else
+{
+        <div style="overflow-x:hidden;overflow-y:visible;height:500px;">
+            @foreach (var fibItem in fibSeries)
+            {
+           
+                    <span> @fibItem</span><span>,</span>
+            }
+
+    </div>
+     @if(total>0)
+        {
+             <div class="top-row">
+              <span >Sum of Even Fibonacci numbers:<span style="margin-left:10px;">&nbsp;@total</span></span>
+              </div>
+
+        }
+    
+}
+@code {
+    List<ulong> fibSeries = new List<ulong>();
+    ulong total =0;
+    protected override async Task OnInitializedAsync()
+    {
+        FibonociService _IFibonoci = new FibonociService();
+        _IFibonoci.lengthOftheSeries =200;
+        await foreach(var item in _IFibonoci.GenarateNumber(_IFibonoci))
+        {
+            fibSeries.Add(item);
+            this.StateHasChanged();
+        }
+        total = _IFibonoci.GettheSumoftheSeries();
+
+    }
+}

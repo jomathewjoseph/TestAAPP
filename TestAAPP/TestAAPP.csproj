@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Data\WeatherForecast.cs" />
+    <Compile Remove="Data\WeatherForecastService - Copy.cs" />
+    <Compile Remove="Data\WeatherForecastService.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="Pages\FetchData - Copy.razor" />
+  </ItemGroup>
+
+</Project>
